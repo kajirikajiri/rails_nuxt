@@ -1,0 +1,19 @@
+{
+  "name": "rails_nuxt",
+  "version": "1.0.0",
+  "description": "My supreme Nuxt.js project",
+  "author": "kazukinakamuraKN",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start --port 4000",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}

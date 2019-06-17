@@ -22,7 +22,3 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-
-# 進捗
-nuxt rails 共にWEBページが開ける。
-最終的にはrailsのAPIをnuxtから叩きたい
