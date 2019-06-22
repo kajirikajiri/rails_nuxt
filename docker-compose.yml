@@ -25,8 +25,11 @@ services:
     restart: always
     ports:
       - "4000:4000"
+    volumes:
+      - ${NUXT_DIR}/app:/src
+      - /src/node_modules
     command:
-      "npm run start"
+      "yarn run dev"
 
   nginx:
     image: nginx:1.13

@@ -1,0 +1,10 @@
+module Api
+  module V1
+    class ExamplesController < ApplicationController
+      def index
+        examples = Example.all.select(:id, :name, :colour)
+        render json: examples
+      end
+    end
+  end
+end
