@@ -3,7 +3,7 @@
     <v-flex>
       <v-list>
         <v-list-tile v-for="example in examples" :key="example.id" :class="example.colour">
-          <v-list-tile-content>{{example.name}}</v-list-tile-content>
+          <v-list-tile-content>{{example.name}}{{TEST}}</v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-flex>
@@ -14,7 +14,8 @@
 export default {
   data () {
     return {
-      examples: []
+      examples: [],
+      TEST: process.env.TEST // 環境変数テスト中
     }
   },
   methods: {

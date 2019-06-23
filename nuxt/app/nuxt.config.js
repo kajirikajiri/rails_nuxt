@@ -1,3 +1,4 @@
+require('dotenv').config()
 module.exports = {
   /*
   ** Headers of the page
@@ -37,12 +38,14 @@ module.exports = {
   },
   modules: [
     '@nuxtjs/vuetify',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    ['@nuxtjs/dotenv', { filename: ENV_IS_PRODUCTIION ? '.env.production' : '.env.development' }],
   ],
   axios: {
-    host: 'localhost',
-    port: 3000,
+    host: ENV_IS_PRODUCTIION ? 'https://fathomless-sierra-36623.herokuapp.com/' :'localhost',
+    port: ENV_IS_PRODUCTIION ? '' : 3000,
     prefix: '/api/v1'
-  }
+  },
 }
 
+var ENV_IS_PRODUCTIION = process.env.NODE_ENV === 'production'
