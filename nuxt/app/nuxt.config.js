@@ -41,10 +41,8 @@ module.exports = {
     '@nuxtjs/axios',
     ['@nuxtjs/dotenv', { filename: ENV_IS_PRODUCTIION ? '.env.production' : '.env.development' }],
   ],
-  axios: {
-    host: ENV_IS_PRODUCTIION ? 'https://fathomless-sierra-36623.herokuapp.com/' :'localhost',
-    port: ENV_IS_PRODUCTIION ? '' : 3000,
-    prefix: '/api/v1'
+  env: {
+    baseUrl: !ENV_IS_PRODUCTIION ? 'https://fathomless-sierra-36623.herokuapp.com/api/v1' :'http://localhost:3000/api/v1',
   },
 }
 
