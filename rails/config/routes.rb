@@ -4,13 +4,9 @@ Rails.application.routes.draw do
       resources :posts
       # scope :api, defaults: {format: :json} do
       resources :examples
+      post '/signup', to: 'users#new'
+      get '/login', to: 'sessions#new'
+      post '/login', to: 'sessions#create'
     end
   end
 end
-
-# Rails.application.routes.draw do
-#   scope :api, defaults: {format: :json} do
-#     resources :examples
-#     resources :posts
-#   end
-# end
