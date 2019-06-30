@@ -43,8 +43,6 @@
 import api from '../plugins/axios';
 import {mapActions,mapState} from 'vuex'
 import Zdog from './zdog/index'
-import {DatePicker,Button} from 'ant-design-vue';
-// import 'ant-design-vue/dist/antd.css';  // or 'ant-design-vue/dist/antd.less'
 export default {
   components: {
     Zdog

@@ -9041,6 +9041,11 @@ yarn@^1.16.0:
   resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.16.0.tgz#5701b58ac555ff91f7b889b7d791b3dc86f8f999"
   integrity sha512-cfemyGlnWKA1zopUUgebTPf8C4WkPIZ+TJmklwcEAJ4u6oWPtJeAzrsamaGGh/+b1XWe8W51yzAImC4AWbWR1g==
 
+zdog@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/zdog/-/zdog-1.1.0.tgz#88b60a73e5c8a11fcf0c29d28c0339553ffe9566"
+  integrity sha512-PlgvESx/LKMnHbfRdGvpXn/QpoDK6jmO4HyxtydIXcMYt6qr1DMwNsiqJIiU1ibryKEnlFl/JyNrNe9Tk0+Y9w==
+
 zip-stream@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/zip-stream/-/zip-stream-1.2.0.tgz#a8bc45f4c1b49699c6b90198baacaacdbcd4ba04"
