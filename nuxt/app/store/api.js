@@ -55,8 +55,7 @@ export const actions = {
       console.log('error',e)
     }finally{
       if(result){
-        console.log(result.status,'sign in result')
-        return true
+        return result.status === 200 ? true : false
       }else{
         return false
       }

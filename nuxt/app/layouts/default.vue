@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-app>
+    <v-app class="all_wrap">
       <v-toolbar app dark>
         <v-toolbar-title>Auth example</v-toolbar-title>
         <v-spacer />
@@ -14,3 +14,9 @@
     </v-app>
   </div>
 </template>
+
+<style scoped>
+  .all_wrap{
+    background: #000005
+  }
+</style>
