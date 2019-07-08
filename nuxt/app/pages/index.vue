@@ -4,15 +4,22 @@
     <v-flex>
     <Zdog/>
       <template v-if="page_render_flag">
-      <v-btn @click="colour({name: bar_name, colour: bar_colour})">color add</v-btn>
+      <v-btn @click="set_color_action_wrap({name: bar_name, colour: bar_colour})">color add</v-btn>
       <v-text-field :dark="true" prepend-icon="color_lens" label="color" v-model="bar_colour"/>
       <v-text-field :dark="true" prepend-icon="edit" label="text" v-model="bar_name"/>
-      <v-list>
-        <v-list-tile v-for="example in api.data" :key="example.id" :class="example.colour">
-          <v-list-tile-content>{{example.name}}{{TEST}}</v-list-tile-content>
-        </v-list-tile>
+      <v-list class="color_list_wrap">
+        <Draggable>
+        <template v-for="color in colors">
+            <div class="list_style" :key="color.id" :style="{background: color.colour}">
+              <v-icon @click="delete_color_action_wrap({id: color.id})">delete</v-icon>
+              <v-list-tile-content>
+                {{`id: ${color.id},`}}{{`name: ${color.name},`}}{{`環境変数: ${TEST}`}}
+              </v-list-tile-content>
+            </div>
+        </template>
+        </Draggable>
       </v-list>
-      {{api.data}}
+      {{colors}}
       </template>
       <template v-if="!page_render_flag">
         <div>
@@ -36,6 +43,11 @@
       </template>
     </v-flex>
   </v-layout>
+  <v-snackbar
+    v-model="snackbar"
+    :timeout="6000"
+    :top="true"
+    :vertical="true">{{snackbar_message}}</v-snackbar>
   </div>
 </template>
 
@@ -43,22 +55,25 @@
 import api from '../plugins/axios';
 import {mapActions,mapState} from 'vuex'
 import Zdog from './zdog/index'
+import Draggable from 'vuedraggable'
 export default {
   components: {
-    Zdog
+    Zdog,
+    Draggable
   },
   data () {
     return {
-      examples: [],
+      snackbar: false,
+      snackbar_message: 'default message',
       page_render_flag: false,
       TEST: process.env.TEST, // 環境変数テスト中
       rules: {
-          required: value => !!value || 'Required.',
-          min: v => !v || v.length >= 8 || 'Min 8 characters',
-          email: value => {
-            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return pattern.test(value) || 'Invalid e-mail.'
-          }
+        required: value => !!value || 'Required.',
+        min: v => !v || v.length >= 8 || 'Min 8 characters',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        }
       }
     }
   },
@@ -67,11 +82,29 @@ export default {
       console.log('log',await api.get('/posts'))
     },
     ...mapActions({
-      set_api: 'api/updateActionValue',
-      colour: 'api/colour',
+      update_colors_action: 'api/update_colors_action',
+      set_color_action: 'api/set_color_action',
+      delete_color_action: 'api/delete_color_action',
       sign_up: 'api/sign_up',
       sign_in: 'api/sign_in'
     }),
+    async delete_color_action_wrap(id){
+      const result = await this.delete_color_action(id)
+      await this.update_colors_action()
+      const message = result ? 'delete row' : 'not exists'
+      this.set_snackbar_message(message)
+      this.snackbar_view()
+    },
+    async set_color_action_wrap(argment){
+      await this.set_color_action(argment)
+      await this.update_colors_action()
+    },
+    snackbar_view() {
+      this.snackbar = true
+    },
+    set_snackbar_message(message) {
+      this.snackbar_message = message
+    },
     async sign_up_button_func({email,password}) {
       const result = await this.sign_up({email:email,password:password})
       return result ? console.log('signup!!'):console.log('signup miss ...')
@@ -83,16 +116,29 @@ export default {
   },
   computed: {
     ...mapState({
-      api: state => state.api.value
+      colors: state => state.api.colors.data
     })
   },
   mounted () {
-    this.set_api()
+    this.update_colors_action()
     this.updateExamples()
   }
 }
 </script>
 
 <style scoped>
-
+.list_style{
+  display: flex;
+  border-radius: 12px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 20%;
+  margin: 10px;
+}
+.color_list_wrap{
+  display: flex;
+  flex-wrap: wrap;
+  background: black;
+}
 </style>
