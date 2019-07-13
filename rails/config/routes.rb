@@ -7,7 +7,8 @@ Rails.application.routes.draw do
       post '/signup', to: 'users#new'
       get '/login', to: 'sessions#new'
       post '/login', to: 'sessions#create'
-      post '/colour', to: 'examples#new'
+      post '/color', to: 'examples#new'
+      post '/change_color_position_id', to: 'examples#change'
     end
   end
 end

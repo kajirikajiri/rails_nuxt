@@ -27,8 +27,8 @@ export const actions = {
       return finally_process(result)
     }
   },
-  async set_color_action(context,{name,colour}){
-    await api.post('/colour',{name,colour})
+  async set_color_action(context,{name,color}){
+    await api.post('/color',{name,color})
   },
   async delete_color_action(context,{id}){
     let result = null
@@ -44,6 +44,16 @@ export const actions = {
     let result
     try{
       result = await api.post('/login',{email,password})
+    }catch(e){
+      error_output_log(e)
+    }finally{
+      return finally_process(result)
+    }
+  },
+  async change_color_position_id(context,{oldIndex,newIndex}){
+    let result
+    try{
+      result = await api.post('/change_color_position_id',{oldIndex,newIndex})
     }catch(e){
       error_output_log(e)
     }finally{
