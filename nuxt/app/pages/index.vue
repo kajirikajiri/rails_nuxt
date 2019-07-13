@@ -119,9 +119,9 @@ export default {
       colors: state => state.api.colors.data
     })
   },
-  mounted () {
-    this.update_colors_action()
-    this.updateExamples()
+  async mounted () {
+    await this.update_colors_action()
+    await this.updateExamples()
   }
 }
 </script>
