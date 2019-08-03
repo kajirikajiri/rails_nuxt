@@ -42,7 +42,7 @@ module.exports = {
     ['@nuxtjs/dotenv', { filename: ENV_IS_PRODUCTIION ? '.env.production' : '.env.development' }],
   ],
   env: {
-    baseUrl: process.env.NODE_ENV === 'production' ? 'https://fathomless-sierra-36623.herokuapp.com/api/v1' :'http://localhost:3000/api/v1',
+    baseUrl: process.env.NODE_ENV === 'production' ? 'https://fathomless-sierra-36623.herokuapp.com/api/v1' :'http://localhost:3210/api/v1',
   },
 }
 

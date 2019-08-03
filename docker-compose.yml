@@ -10,11 +10,11 @@ services:
       context: ${RAILS_DIR}
       dockerfile: Dockerfile.rails
     container_name: nr_rails
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3210 -b '0.0.0.0'"
     volumes:
       - ${RAILS_DIR}:/myapp
     ports:
-      - "3000:3000"
+      - "3210:3210"
     depends_on:
       - db
   nuxt:
@@ -24,7 +24,7 @@ services:
     container_name: nr_nuxt
     restart: always
     ports:
-      - "4000:4000"
+      - "4321:4000"
     volumes:
       - ${NUXT_DIR}/app:/src
       - /src/node_modules
