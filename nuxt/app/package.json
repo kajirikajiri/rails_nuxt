@@ -24,7 +24,7 @@
     "global": "^4.4.0",
     "nuxt": "^2.0.0",
     "vuedraggable": "^2.23.0",
-    "yarn": "^1.16.0",
+    "yarn": "^1.22.0",
     "zdog": "^1.1.0"
   },
   "devDependencies": {
